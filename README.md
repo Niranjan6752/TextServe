@@ -130,22 +130,23 @@ Example output:
 | Execution Path | Description | Bottleneck |
 |----------------|--------------|-------------|
 | **Cache Hit (Memory Path)** | Data served directly from cache (no worker, no DB) | Memory-bound |
-| **CPU Mode Path** | Cache miss triggers heavy text computation (200x loop) | CPU-bound |
+| **CPU Mode Path** | Cache miss triggers heavy text computation | CPU-bound |
 | **IO Mode Path** | Cache miss triggers file + DB write | Disk/I/O-bound |
 
 ## Performance Evaluation
+This analysis will be done later :
 During testing with the included load generator:
 - **CPU mode** shows lower throughput due to heavy computation
 - **IO mode** shows higher latency due to disk and DB operations
 - Repeated requests yield **cache hits**, improving throughput
 
-You can plot:
+We can plot:
 - Throughput (jobs/sec) vs. Number of Clients  
 - Average Latency vs. Number of Clients  
 to demonstrate performance bottlenecks and cache effects.
 
 ## Technologies Used
-- Go (Golang) — HTTP, concurrency, sync primitives  
+- Go (Golang) — HTTP, concurrency
 - PostgreSQL — persistent backend  
 - GORM — ORM for DB interactions  
 - JSON — data serialization  
@@ -155,4 +156,3 @@ to demonstrate performance bottlenecks and cache effects.
 ## Author
 **Niranjan Sharma**  
 IIT Bombay — M.Tech, Computer Science  
-Originally developed as part of the "Design and Engineering of Computing Systems" coursework, extended for performance benchmarking.
