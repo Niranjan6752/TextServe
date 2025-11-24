@@ -19,8 +19,8 @@ import (
 var (
 	serverURL  = flag.String("url", "http://localhost:8080", "Server URL")
 	numClients = flag.Int("clients", 20, "Number of concurrent clients")
-	testMode = flag.String("mode", "popular_cpu", "Workload mode: popular_cpu, popular_io, all_miss_cpu, or all_miss_io")
-	runTime  = flag.Duration("time", 30*time.Second, "Duration of load test (e.g. 30s, 1m)")
+	testMode   = flag.String("mode", "popular_cpu", "Workload mode: popular_cpu, popular_io, all_miss_cpu, or all_miss_io")
+	runTime    = flag.Duration("time", 30*time.Second, "Duration of load test (e.g. 30s, 1m)")
 )
 
 // -------------- Popular Text  --------------
@@ -100,7 +100,7 @@ func clientWorker(id int, wg *sync.WaitGroup, stats *Stats, stopCh <-chan struct
 
 func runOneJob(client *http.Client, r *rand.Rand) bool {
 	var data string
-	var serverMode string 
+	var serverMode string
 
 	isPopular := false
 	if *testMode == "popular_cpu" || *testMode == "popular_io" {
@@ -145,7 +145,6 @@ func runOneJob(client *http.Client, r *rand.Rand) bool {
 
 	req, _ := http.NewRequest("POST", *serverURL+"/upload", bytes.NewBuffer(body))
 	req.Header.Set("Content-Type", "application/json")
-
 
 	resp, err := client.Do(req)
 	if err != nil {
